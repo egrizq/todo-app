@@ -1,0 +1,1 @@
+ALTER TABLE "todo_table" ADD COLUMN "status" text NOT NULL;

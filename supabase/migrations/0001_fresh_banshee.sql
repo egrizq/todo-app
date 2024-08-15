@@ -1,0 +1,1 @@
+ALTER TABLE "posts_table" RENAME TO "todo_table";
