@@ -88,7 +88,7 @@ export function TodoAction(item: { item: TypeTodo }) {
                             className="accent-emerald-500/25 w-5 h-5"
                         />
 
-                        <label htmlFor="check">
+                        <label htmlFor="check" className="w-full">
                             {isChecked ? <s>{item.item.message}</s> : item.item.message}
                         </label>
                     </div>

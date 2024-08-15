@@ -21,12 +21,12 @@ async function FinishedTodoList() {
 
                         <form
                             action={Revert}
-                            className="flex flex-row"
+                            className="flex flex-row w-full"
                         >
 
                             <input name="id" value={item.id} type="hidden" readOnly />
 
-                            <button type="submit" className="px-1">
+                            <button type="submit" className="px-1 w-1/12">
                                 <Image
                                     src={"/refresh.svg"}
                                     width={25}
@@ -36,7 +36,7 @@ async function FinishedTodoList() {
                                 />
                             </button>
 
-                            <p><s>{item.message}</s></p>
+                            <p className="w-11/12"><s>{item.message}</s></p>
                         </form>
                     </div>
                 ))}
