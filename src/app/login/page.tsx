@@ -1,7 +1,14 @@
-import { signIn } from "@/lib/auth"
+import { auth, signIn } from "@/lib/auth"
 import Image from "next/image"
+import { redirect } from "next/navigation";
 
-export default function SignIn() {
+export default async function SignIn() {
+    const session = await auth()
+
+    if (session?.user) {
+        redirect(`/`);
+    }
+
     return (
         <>
             <div className="flex justify-center items-center min-h-screen">
