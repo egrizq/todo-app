@@ -1,10 +1,10 @@
 'use client';
 
-import { todoInsert } from "@/auth/todo";
+import { todoInsert } from "@/db/todo";
 import { useFormState, useFormStatus } from "react-dom";
 import { useRef } from 'react';
 
-export function TodoInput() {
+export function TodoInput(data: { email: string }) {
     const [state, action] = useFormState(todoInsert, undefined)
     const ref = useRef<HTMLFormElement>(null)
 
@@ -18,6 +18,14 @@ export function TodoInput() {
             <form
                 ref={ref}
                 action={handleSubmit}>
+
+                <input
+                    name="email"
+                    value={data.email}
+                    className="border border-black p-2"
+                    type="hidden"
+                    readOnly
+                />
 
                 <input
                     name="todo"

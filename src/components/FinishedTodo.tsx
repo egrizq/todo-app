@@ -1,17 +1,32 @@
-import { finishTodoList } from "@/auth/todo";
+import { countTask, finishTodoList } from "@/db/todo";
 import Image from "next/image";
 import { Revert } from "./UpdateTodo";
 
-async function FinishedTodoList() {
-    const todoItems = await finishTodoList();
+async function FinishedTodoList(data: { email: string }) {
+    const todoItems = await finishTodoList(data.email);
+    const { doneCount } = await countTask(data.email);
 
     return (
         <div className="space-y-3">
-            <p className="mx-2 font-semibold text-2xl">
-                {todoItems.length === 0 ? "" : "Finished Task"}
-            </p>
 
-            <div className="mx-5 space-y-1">
+            <div className="flex justify-between">
+                <p className="font-semibold text-base sm:text-2xl">
+                    {todoItems.length === 0 ? "" : "Finished Task"}
+                </p>
+
+                {todoItems.length === 0 ? null :
+                    <div className="flex flex-row text-sm">
+                        <div className="p-1 bg-emerald-300 rounded-l-md">
+                            Done
+                        </div>
+                        <div className=" p-1 bg-emerald-400 rounded-r-md">
+                            {doneCount}
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div className="mx-3 space-y-1">
 
                 {todoItems.map((item) => (
                     <div
@@ -24,19 +39,19 @@ async function FinishedTodoList() {
                             className="flex flex-row w-full"
                         >
 
-                            <input name="id" value={item.id} type="hidden" readOnly />
+                            <input name="id" value={item.id!} type="hidden" readOnly />
 
                             <button type="submit" className="px-1 w-1/12">
                                 <Image
                                     src={"/refresh.svg"}
                                     width={25}
                                     height={20}
-                                    alt={item.message}
+                                    alt={item.message!}
                                     className="transition-transform duration-150 ease-in-out transform hover:scale-125"
                                 />
                             </button>
 
-                            <p className="w-11/12"><s>{item.message}</s></p>
+                            <p className="w-11/12 text-sm sm:text-xl"><s>{item.message}</s></p>
                         </form>
                     </div>
                 ))}

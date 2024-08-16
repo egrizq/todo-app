@@ -1,25 +1,27 @@
 import AllTodoList from "@/components/ListData";
-import { TodoInput } from "./form";
 import FinishedTodoList from "@/components/FinishedTodo";
-import { GetCountTask } from "@/components/UpdateTodo";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { Profile } from "@/components/Profile";
+import { TodoInput } from "@/components/InputToDo";
 
-export default function Home() {
+export default async function Home() {
+    const session = await auth()
+
+    if (!session?.user) {
+        redirect(`/login`);
+    }
+
     return (
         <main className="container mx-auto">
             <div className="flex justify-center">
-                <div className="flex flex-col w-5/12 space-y-4 py-10">
+                <div className="flex flex-col w-10/12 sm:w-5/12 space-y-4 py-10">
 
-                    <div className="text-center">
-                        <p className="text-3xl font-bold">TODO LIST</p>
+                    <Profile name={session.user.name!} image={session.user.image!} />
+                    <TodoInput email={session.user.email!} />
+                    <AllTodoList email={session.user.email!} />
+                    <FinishedTodoList email={session.user.email!} />
 
-                        <GetCountTask />
-                    </div>
-
-                    <TodoInput />
-
-                    <AllTodoList />
-
-                    <FinishedTodoList />
                 </div>
             </div>
         </main>

@@ -1,0 +1,1 @@
+ALTER TABLE "todo_table" ALTER COLUMN "user_id" SET NOT NULL;

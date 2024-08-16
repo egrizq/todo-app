@@ -5,9 +5,9 @@ import { UpdateTodo, DeleteTodo, updateTodoMessage } from "./UpdateTodo";
 import Image from "next/image";
 
 interface TypeTodo {
-    message: string;
-    id: number;
-    status: string;
+    message: string | null;
+    id: number | null;
+    status: string | null;
 }
 
 export function TodoAction(item: { item: TypeTodo }) {
@@ -27,7 +27,7 @@ export function TodoAction(item: { item: TypeTodo }) {
 
     useEffect(() => {
         if (isChecked) {
-            UpdateTodo(item.item.id);
+            UpdateTodo(item.item.id!);
         }
     }, [isChecked])
 
@@ -38,7 +38,7 @@ export function TodoAction(item: { item: TypeTodo }) {
                 className="flex items-center text-xl relative group">
 
                 {isEdit ?
-                    <div className="w-full flex flex-row space-x-1">
+                    <div className="w-full flex flex-row space-x-3">
                         <button
                             className="transition-transform duration-150 ease-in-out transform hover:scale-125"
                             onClick={() => setIsEdit(isChecked)}
@@ -64,14 +64,14 @@ export function TodoAction(item: { item: TypeTodo }) {
                                 className="w-full"
                                 type="text"
                                 name="message"
-                                value={todoMessage}
+                                value={todoMessage!}
                                 onChange={handleUpdateTask}
                             />
 
                             <input
                                 type="hidden"
                                 name="id"
-                                value={item.item.id}
+                                value={item.item.id!}
                                 readOnly
                             />
                         </form>
@@ -79,29 +79,30 @@ export function TodoAction(item: { item: TypeTodo }) {
 
                     : // seperator
 
-                    <div className="flex flex-row items-center w-10/12 space-x-2">
+                    <div className="flex flex-row items-center w-10/12 space-x-4">
                         <input
                             type="checkbox"
                             name="check"
                             checked={isChecked}
                             onChange={handleCheckBox}
-                            className="accent-emerald-500/25 w-5 h-5"
+                            className="accent-emerald-500/25 sm:w-5 sm:h-5"
                         />
 
-                        <label htmlFor="check" className="w-full">
+                        <label htmlFor="check" className="w-full text-sm sm:text-xl">
                             {isChecked ? <s>{item.item.message}</s> : item.item.message}
                         </label>
                     </div>
                 }
 
+                {/* todo option */}
                 {isEdit ?
                     null :
-                    <div className="flex flex-row absolute right-0 opacity-0 space-x-2 group-hover:opacity-100 transition-opacity duration-150 ease-in-out items-center text-base">
-                        <DeleteAction id={item.item.id} />
+                    <div className="flex flex-row absolute right-0 opacity-0 space-x-2 group-hover:opacity-100 transition-opacity duration-150 ease-in-out items-center">
+                        <DeleteAction id={item.item.id!} />
 
                         <button
                             onClick={() => setIsEdit(!isChecked)}
-                            className="hover:bg-black hover:text-white border-black border items-center px-2 pb-1 rounded-md"
+                            className="hover:bg-black hover:text-white border-black border items-center px-2 py-1 rounded-md text-xs sm:text-base"
                         >
                             Edit
                         </button>
@@ -120,7 +121,7 @@ const DeleteAction = (id: { id: number }) => {
 
                 <button
                     type="submit"
-                    className="hover:bg-red-600 bg-red-500 text-white px-2 pb-1 rounded-md"
+                    className="hover:bg-red-600 bg-red-500 text-white px-2 py-1 items-center rounded-md text-sm sm:text-base"
                 >
                     x
                 </button>

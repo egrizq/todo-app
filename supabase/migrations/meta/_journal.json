@@ -22,6 +22,34 @@
       "when": 1723603176551,
       "tag": "0002_perfect_cannonball",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1723767960958,
+      "tag": "0003_outstanding_synch",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1723798003318,
+      "tag": "0004_absurd_ogun",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1723798155649,
+      "tag": "0005_milky_senator_kelly",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1723798589007,
+      "tag": "0006_complex_vulcan",
+      "breakpoints": true
     }
   ]
 }
