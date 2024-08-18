@@ -15,7 +15,7 @@ export default async function Home() {
     return (
         <main className="container mx-auto">
             <div className="flex justify-center">
-                <div className="flex flex-col w-10/12 sm:w-5/12 space-y-4 py-10">
+                <div className="flex flex-col w-10/12 sm:w-9/12 md:w-9/12 lg:w-6/12 xl:w-5/12 space-y-4 py-10">
 
                     <Profile name={session.user.name!} image={session.user.image!} />
                     <TodoInput email={session.user.email!} />

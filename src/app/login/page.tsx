@@ -16,10 +16,10 @@ export default async function SignIn() {
                 <div className="container mx-auto">
                     <div className="flex justify-center ">
 
-                        <div className="flex flex-col border border-gray-300 rounded-md p-3 w-4/12">
+                        <div className="flex flex-col border border-gray-300 rounded-md p-3 w-10/12 sm:w-8/12 md:w-7/12 lg:w-5/12 xl:w-4/12">
 
                             <div className="flex justify-center pb-3">
-                                <p className="w-3/12 text-center border border-zinc-200 px-2 py-1 rounded-md text-sm">
+                                <p className="w-5/12 sm:w-3/12 md:w-4/12 text-center border border-zinc-200 px-2 py-1 rounded-md text-sm">
                                     Start-ToDo
                                 </p>
                             </div>
