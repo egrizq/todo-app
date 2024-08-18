@@ -35,7 +35,7 @@ export function TodoAction(item: { item: TypeTodo }) {
         <>
             <div
                 key={item.item.id}
-                className="flex items-center text-xl relative group">
+                className="flex items-center relative group">
 
                 {isEdit ?
                     <div className="w-full flex flex-row space-x-3">
@@ -45,14 +45,14 @@ export function TodoAction(item: { item: TypeTodo }) {
                         >
                             <Image
                                 src={"/cancel_editt.svg"}
-                                width={20}
-                                height={20}
+                                width={17}
+                                height={17}
                                 alt="cancel"
                             />
                         </button>
 
                         <form
-                            className="w-11/12 flex flex-row items-center border-b border-gray-300 space-x-2"
+                            className="w-11/12 flex flex-row items-center border-b border-gray-300 space-x-2 text-sm sm:text-xl"
                             onSubmit={(e: FormEvent<HTMLFormElement>) => {
                                 e.preventDefault();
                                 updateTodoMessage(new FormData(e.currentTarget));
@@ -88,7 +88,7 @@ export function TodoAction(item: { item: TypeTodo }) {
                             className="accent-emerald-500/25 sm:w-5 sm:h-5"
                         />
 
-                        <label htmlFor="check" className="w-full text-sm sm:text-xl">
+                        <label htmlFor="check" className="w-full">
                             {isChecked ? <s>{item.item.message}</s> : item.item.message}
                         </label>
                     </div>

@@ -10,7 +10,7 @@ async function FinishedTodoList(data: { email: string }) {
         <div className="space-y-3">
 
             <div className="flex justify-between">
-                <p className="font-semibold text-base sm:text-2xl">
+                <p className="font-semibold text-base sm:text-xl md:text-2xl">
                     {todoItems.length === 0 ? "" : "Finished Task"}
                 </p>
 
@@ -31,7 +31,7 @@ async function FinishedTodoList(data: { email: string }) {
                 {todoItems.map((item) => (
                     <div
                         key={item.id}
-                        className="flex items-center text-xl"
+                        className="flex items-center"
                     >
 
                         <form
@@ -51,7 +51,7 @@ async function FinishedTodoList(data: { email: string }) {
                                 />
                             </button>
 
-                            <p className="w-11/12 text-sm sm:text-xl"><s>{item.message}</s></p>
+                            <p className="w-11/12 text-sm sm:text-base md:text-base lg:text-lg"><s>{item.message}</s></p>
                         </form>
                     </div>
                 ))}
