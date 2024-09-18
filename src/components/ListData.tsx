@@ -1,9 +1,8 @@
-import { countTask, getTodoList } from "@/db/todo";
+import { getTodoList } from "@/db/todo";
 import { TodoAction } from "./TodoAction";
 
 async function AllTodoList(data: { email: string }) {
     const todoItems = await getTodoList(data.email);
-    const { todoCount } = await countTask(data.email);
 
     return (
         <div className="space-y-3 pt-2">
@@ -19,14 +18,14 @@ async function AllTodoList(data: { email: string }) {
                                 Todo
                             </div>
                             <div className="p-1 bg-red-500 rounded-r-md">
-                                {todoCount}
+                                {todoItems.length}
                             </div>
                         </div>
                     </>
                 }
             </div>
 
-            <div className="ml-5 text-sm sm:text-sm md:text-base lg:text-lg space-y-2">
+            <div className="ml-4 text-sm sm:text-sm md:text-base lg:text-lg space-y-2">
                 {todoItems.map((item) => (
                     <TodoAction key={item.id} item={item} />
                 ))}

@@ -1,10 +1,9 @@
-import { countTask, finishTodoList } from "@/db/todo";
-import Image from "next/image";
+import { finishTodoList } from "@/db/todo";
 import { Revert } from "./UpdateTodo";
+import FinishedButton from "./FinishedButton";
 
 async function FinishedTodoList(data: { email: string }) {
     const todoItems = await finishTodoList(data.email);
-    const { doneCount } = await countTask(data.email);
 
     return (
         <div className="space-y-3">
@@ -20,7 +19,7 @@ async function FinishedTodoList(data: { email: string }) {
                             Done
                         </div>
                         <div className=" p-1 bg-emerald-400 rounded-r-md">
-                            {doneCount}
+                            {todoItems.length}
                         </div>
                     </div>
                 }
@@ -40,16 +39,7 @@ async function FinishedTodoList(data: { email: string }) {
                         >
 
                             <input name="id" value={item.id!} type="hidden" readOnly />
-
-                            <button type="submit" className="px-1 w-1/12">
-                                <Image
-                                    src={"/refresh.svg"}
-                                    width={25}
-                                    height={20}
-                                    alt={item.message!}
-                                    className="transition-transform duration-150 ease-in-out transform hover:scale-125"
-                                />
-                            </button>
+                            <FinishedButton message={item.message!} />
 
                             <p className="w-11/12 text-sm sm:text-base md:text-base lg:text-lg"><s>{item.message}</s></p>
                         </form>

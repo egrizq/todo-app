@@ -109,26 +109,3 @@ export async function updateTodoTask(message: string, id: number) {
     .set({ message: message })
     .where(eq(todoTable.id, id));
 }
-
-export async function countTask(email: string) {
-  const todoCount = await db
-    .select({
-      count: count(todoTable.id),
-    })
-    .from(todoTable)
-    .fullJoin(users, eq(todoTable.userId, users.id))
-    .where(and(eq(todoTable.status, "todo"), eq(users.email, email)));
-
-  const doneCount = await db
-    .select({
-      count: count(todoTable.id),
-    })
-    .from(todoTable)
-    .fullJoin(users, eq(todoTable.userId, users.id))
-    .where(and(eq(todoTable.status, "done"), eq(users.email, email)));
-
-  return {
-    todoCount: todoCount[0].count,
-    doneCount: doneCount[0].count,
-  };
-}

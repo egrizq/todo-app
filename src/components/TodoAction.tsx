@@ -80,17 +80,26 @@ export function TodoAction(item: { item: TypeTodo }) {
                     : // seperator
 
                     <div className="flex flex-row items-center w-10/12 space-x-4">
-                        <input
-                            type="checkbox"
-                            name="check"
-                            checked={isChecked}
-                            onChange={handleCheckBox}
-                            className="accent-emerald-500/25 sm:w-5 sm:h-5"
-                        />
+                        {isChecked ?
+                            <>
+                                <p>⏳</p>
+                                <s>{item.item.message}</s>
+                            </>
+                            :
+                            <>
+                                <input
+                                    type="checkbox"
+                                    name="check"
+                                    checked={isChecked}
+                                    onChange={handleCheckBox}
+                                    className="accent-emerald-500/25 sm:w-5 sm:h-5 ml-1"
+                                />
 
-                        <label htmlFor="check" className="w-full">
-                            {isChecked ? <s>{item.item.message}</s> : item.item.message}
-                        </label>
+                                <label htmlFor="check" className="w-full">
+                                    {item.item.message}
+                                </label>
+                            </>
+                        }
                     </div>
                 }
 
